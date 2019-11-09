@@ -71,10 +71,11 @@ export default {
         const ad = {
           title: this.title,
           description: this.description,
-          promo: this.promo
+          promo: this.promo,
+          src: "https://pbs.twimg.com/media/Dt93e9yXcAAPVG6.jpg"
         };
-        console.log(ad);
-        
+
+        this.$store.dispatch("createAd", ad);
       }
     }
   }

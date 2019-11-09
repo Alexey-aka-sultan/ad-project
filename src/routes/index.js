@@ -17,7 +17,7 @@ export default new Router({
         {path: '/login', name: 'login', component: Login},
         {path: '/registration', name: 'registration', component: Registration},
         {path: '/ad-list', name: 'ad-list', component: AdList},
-        {path: '/ad/:id', name: 'ad', component: Ad},
+        {path: '/ad/:id', name: 'ad', component: Ad, props: true},
         {path: '/new-ad', name: 'new-ad', component: NewAd},
         {path: '/orders', name: 'orders', component: Orders}
     ],
