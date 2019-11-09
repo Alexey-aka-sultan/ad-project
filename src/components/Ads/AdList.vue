@@ -4,15 +4,15 @@
       <v-flex xs12 sm6 offset-sm-3>
         <h1 class="text--secondary mb-3">My ads</h1>
 
-        <v-card elevation="10" class="mb-4" v-for="(ad,i) in ads" :key="i">
+        <v-card elevation="10" class="mb-4" v-for="(ad,i) in myAds" :key="i">
           <v-layout row>
             <v-flex xs4>
               <v-img :src="ad.src" height="160"></v-img>
             </v-flex>
             <v-flex xs8>
               <v-card-text>
-                  <h2 class="text--primary">{{ ad.title }}</h2>
-                  <p>{{ ad.description }}</p>
+                <h2 class="text--primary">{{ ad.title }}</h2>
+                <p>{{ ad.description }}</p>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -29,24 +29,12 @@
 <script>
 export default {
   data() {
-    return {
-      ads: [
-        {
-          id: "1",
-          title: "One",
-          description: "desc1",
-          promo: false,
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
-        },
-        {
-          id: "2",
-          title: "Two",
-          description: "desc2",
-          promo: false,
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        }
-      ]
-    };
+    return {};
+  },
+  computed: {
+    myAds() {
+      return this.$store.getters.myAds;
+    }
   }
 };
 </script>

@@ -5,14 +5,14 @@
         <v-flex xs12>
           <v-carousel cycle>
             <v-carousel-item
-              v-for="(ad,i) in ads"
+              v-for="(ad,i) in promoAds"
               :key="i"
               :src="ad.src"
               reverse-transition="fade-transition"
               transition="fade-transition"
             >
               <div class="carousel-link">
-                  <v-btn class="error" :to="'/ad/'+ad.id">{{ ad.title }}</v-btn>
+                <v-btn class="error" :to="'/ad/'+ad.id">{{ ad.title }}</v-btn>
               </div>
             </v-carousel-item>
           </v-carousel>
@@ -47,38 +47,15 @@
 <script>
 export default {
   data() {
-    return {
-      ads: [
-        {
-          id: "1",
-          title: "One",
-          description: "desc1",
-          promo: false,
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
-        },
-        {
-          id: "2",
-          title: "Two",
-          description: "desc2",
-          promo: false,
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        },
-        {
-          id: "3",
-          title: "Three",
-          description: "desc3",
-          promo: false,
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-        },
-        {
-          id: "4",
-          title: "Four",
-          description: "desc4",
-          promo: false,
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
-        }
-      ]
-    };
+    return {};
+  },
+  computed: {
+    promoAds() {
+      return this.$store.getters.promoAds;
+    },
+    ads() {
+      return this.$store.getters.ads;
+    }
   }
 };
 </script>
