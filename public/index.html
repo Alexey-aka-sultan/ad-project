@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title>ad-project</title>
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
@@ -15,6 +16,7 @@
       href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"
     />
   </head>
+
   <body>
     <noscript>
       <strong
@@ -22,19 +24,23 @@
         enabled. Please enable it to continue.</strong
       >
     </noscript>
-    <div id="app"></div>
+          <!-- The core Firebase JS SDK is always required and must be listed first -->
+          <script rel="preload" src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+          <script rel="preload" src="https://www.gstatic.com/firebasejs/7.3.0/firebase-auth.js"></script>
+
+    <script rel="preload">
+      firebase.initializeApp({
+        apiKey: "AIzaSyAc7vZXdxPsyHFezZTA39vQAOi0HXgR4Dk",
+        authDomain: "itc-ads-3f211.firebaseapp.com",
+        databaseURL: "https://itc-ads-3f211.firebaseio.com",
+        projectId: "itc-ads-3f211",
+        storageBucket: "itc-ads-3f211.appspot.com",
+        messagingSenderId: "585806385925",
+        appId: "1:585806385925:web:36dd811f0ab5b788719d6c"
+      });      
+    </script>
+      <div id="app"></div>
+
     <!-- built files will be auto injected -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
-    <!-- <script>
-      // Your web app's Firebase configuration
-      
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    </script> -->
   </body>
 </html>

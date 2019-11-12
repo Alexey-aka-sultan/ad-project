@@ -42,7 +42,9 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn @click="onSubmit" color="primary" :disabled="!valid">Create account</v-btn>
+            <v-btn @click="onSubmit" color="primary" :disabled="!valid"
+              >Create account</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>
@@ -81,12 +83,12 @@ export default {
           email: this.email,
           password: this.password
         };
-        console.log(user);
+
+        this.$store.dispatch("registerUser", user);
       }
     }
   }
 };
 </script>
 
-<style>
-</style>
+<style></style>
