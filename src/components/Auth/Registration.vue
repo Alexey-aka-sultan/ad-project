@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { log } from "util";
+
 export default {
   data() {
     return {
@@ -99,7 +99,7 @@ export default {
           .then(() => {
             this.$router.push("/");
           })
-          .catch(error => console.log(error));
+          .catch(() => {});
       }
     }
   }

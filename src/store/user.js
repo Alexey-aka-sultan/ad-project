@@ -18,6 +18,7 @@ export default {
       commit("clearError");
       commit("setLoading", true);
       try {
+        /*eslint no-use-before-define: ["error", { "variables": false }]*/
         const user = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password);
@@ -29,23 +30,38 @@ export default {
         commit("setError", error.message);
         throw error;
       }
+    },
+    async loginUser({ commit }, { email, password }) {
+      commit("clearError");
+      commit("setLoading", true);
+      try {
+        /*eslint no-use-before-define: ["error", { "variables": false }]*/
+        const user = await firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password);
 
-      // firebase
-      //   .auth()
-      //   .createUserWithEmailAndPassword(email, password)
-      //   .then(user => {
-      //     commit("setUser", new User(user.uid));
-      //     commit("setLoading", false);
-      //   })
-      //   .catch(error => {
-      //     commit("setLoading", false);
-      //     commit("setError", error.message);
-      //   });
+        commit("setUser", new User(user.uid));
+        commit("setLoading", false);
+      } catch (error) {
+        commit("setLoading", false);
+        commit("setError", error.message);
+        throw error;
+      }
+    },
+    autoLoginUser({ commit }, payload) {
+      commit("setUser", new User(payload.uid));
+    },
+    logoutUser({ commit }) {
+      firebase.auth().signOut();
+      commit("setUser", null);
     }
   },
   getters: {
     user(state) {
       return state.user;
+    },
+    isUserLoggedIn(state) {
+      return state.user !== null;
     }
   }
 };
