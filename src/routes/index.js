@@ -9,6 +9,8 @@ import Ad from '../components/Ads/Ad.vue'
 import NewAd from '../components/Ads/NewAd.vue'
 import Orders from '../components/User/Orders.vue'
 
+import AuthGuard from './auth-guard'
+
 Vue.use(Router);
 
 export default new Router({
@@ -16,10 +18,10 @@ export default new Router({
         {path: '', name: 'home', component: Home},
         {path: '/login', name: 'login', component: Login},
         {path: '/registration', name: 'registration', component: Registration},
-        {path: '/ad-list', name: 'ad-list', component: AdList},
+        {path: '/ad-list', name: 'ad-list', component: AdList, beforeEnter: AuthGuard},
         {path: '/ad/:id', name: 'ad', component: Ad, props: true},
-        {path: '/new-ad', name: 'new-ad', component: NewAd},
-        {path: '/orders', name: 'orders', component: Orders}
+        {path: '/new-ad', name: 'new-ad', component: NewAd, beforeEnter: AuthGuard},
+        {path: '/orders', name: 'orders', component: Orders, beforeEnter: AuthGuard}
     ],
     mode: 'history'
 });

@@ -83,6 +83,12 @@ export default {
           .catch(() => {});
       }
     }
+  },
+  created() {
+    if (this.$route.query["loginError"]) {
+      console.log(this.$route);
+      this.$store.dispatch("setError", "Please log in to access this page.");
+    }
   }
 };
 </script>
