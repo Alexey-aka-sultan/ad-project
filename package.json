@@ -22,7 +22,6 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "preload-webpack-plugin": "^2.3.0",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-vuetify": "^2.0.2",
@@ -40,7 +39,12 @@
     ],
     "rules": {
       "no-console": "off",
-      "no-use-before-define": ["error", { "variables": false }]
+      "no-use-before-define": [
+        "error",
+        {
+          "variables": false
+        }
+      ]
     },
     "parserOptions": {
       "parser": "babel-eslint"
