@@ -3,7 +3,7 @@
     <v-layout row>
       <v-flex xs12>
         <v-card>
-          <v-img :src="ad.src" height="300"></v-img>
+          <v-img :src="ad.imageSrc" height="400" contain></v-img>
           <v-card-text>
             <h1 class="text--primary">{{ ad.title }}</h1>
             <p>{{ ad.description }}</p>
@@ -33,5 +33,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

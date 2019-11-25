@@ -24,28 +24,28 @@ export default {
         title: "One",
         description: "desc1",
         promo: false,
-        src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
+        imageSrc: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
       },
       {
         id: "2",
         title: "Two",
         description: "desc2",
         promo: true,
-        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
+        imageSrc: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
       },
       {
         id: "3",
         title: "Three",
         description: "desc3",
         promo: true,
-        src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+        imageSrc: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
       },
       {
         id: "4",
         title: "Four",
         description: "desc4",
         promo: true,
-        src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
+        imageSrc: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
       }
     ]
   },
@@ -67,12 +67,18 @@ export default {
           payload.imageSrc,
           payload.promo
         );
-        /*eslint no-use-before-define: ["error", { "variables": false }]*/
-        const fbValue = await firebase
+        console.log(newAd);
+
+
+        /*eslint-disable */
+        const ad = await firebase
           .database()
           .ref("ads")
           .push(newAd);
-        console.log(fbValue);
+          
+        commit("setLoading", false);
+        commit("createAd", { ...newAd, id: ad.key });
+        /*eslint-enable */
       } catch (error) {
         commit("setError", error.message);
         commit("setLoading", false);

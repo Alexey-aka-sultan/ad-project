@@ -7,7 +7,7 @@
         <v-card elevation="10" class="mb-4" v-for="(ad,i) in myAds" :key="i">
           <v-layout row>
             <v-flex xs4>
-              <v-img :src="ad.src" height="160"></v-img>
+              <v-img :src="ad.imageSrc" height="160"></v-img>
             </v-flex>
             <v-flex xs8>
               <v-card-text>

@@ -10,7 +10,7 @@
             name="title"
             type="text"
             required
-            :rules="[v=>!!v||'Title is required']"
+            :rules="[v => !!v || 'Title is required']"
             v-model="title"
           />
 
@@ -18,7 +18,7 @@
             label="Ad description"
             name="description"
             type="text"
-            :rules="[v=>!!v||'Description is required']"
+            :rules="[v => !!v || 'Description is required']"
             v-model="description"
           />
         </v-form>
@@ -47,7 +47,13 @@
         <v-layout row>
           <v-flex xs12>
             <v-spacer></v-spacer>
-            <v-btn :disabled="!valid" class="success" @click="createAd">Create ad</v-btn>
+            <v-btn
+              :loading="loading"
+              :disabled="!valid || loading"
+              class="success"
+              @click="createAd"
+              >Create ad</v-btn
+            >
           </v-flex>
         </v-layout>
       </v-flex>
@@ -72,15 +78,22 @@ export default {
           title: this.title,
           description: this.description,
           promo: this.promo,
-          src: "https://pbs.twimg.com/media/Dt93e9yXcAAPVG6.jpg"
+          imageSrc: "https://pbs.twimg.com/media/Dt93e9yXcAAPVG6.jpg"
         };
 
-        this.$store.dispatch("createAd", ad);
+        this.$store
+          .dispatch("createAd", ad)
+          .then(() => this.$router.push("/ad-list"))
+          .catch(() => {});
       }
+    }
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
     }
   }
 };
 </script>
 
-<style>
-</style>
+<style></style>

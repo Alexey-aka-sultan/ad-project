@@ -7,7 +7,7 @@
             <v-carousel-item
               v-for="(ad,i) in promoAds"
               :key="i"
-              :src="ad.src"
+              :src="ad.imageSrc"
               reverse-transition="fade-transition"
               transition="fade-transition"
             >
@@ -24,7 +24,7 @@
       <v-layout row wrap>
         <v-flex xs12 md6 lg3 v-for="(ad,i) in ads" :key="i">
           <v-card class="mx-auto" max-width="400">
-            <v-img class="white--text align-end" height="200px" :src="ad.src">
+            <v-img class="white--text align-end" height="200px" :src="ad.imageSrc">
               <v-card-title>{{ ad.title}}</v-card-title>
             </v-img>
 

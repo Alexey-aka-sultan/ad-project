@@ -1,3 +1,5 @@
+/*eslint-disable */
+
 class User {
   constructor(id) {
     this.id = id;
@@ -18,7 +20,6 @@ export default {
       commit("clearError");
       commit("setLoading", true);
       try {
-        /*eslint no-use-before-define: ["error", { "variables": false }]*/
         const user = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password);
@@ -35,12 +36,11 @@ export default {
       commit("clearError");
       commit("setLoading", true);
       try {
-        /*eslint no-use-before-define: ["error", { "variables": false }]*/
         const user = await firebase
           .auth()
           .signInWithEmailAndPassword(email, password);
 
-        commit("setUser", new User(user.uid));
+        commit("setUser", new User(user.user.uid));
         commit("setLoading", false);
       } catch (error) {
         commit("setLoading", false);
@@ -65,3 +65,4 @@ export default {
     }
   }
 };
+/*eslint-enable */
