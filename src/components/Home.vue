@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <div v-if="!loading">
     <v-container fluid>
       <v-layout row>
         <v-flex xs12>
           <v-carousel cycle>
             <v-carousel-item
-              v-for="(ad,i) in promoAds"
+              v-for="(ad, i) in promoAds"
               :key="i"
               :src="ad.imageSrc"
               reverse-transition="fade-transition"
               transition="fade-transition"
             >
               <div class="carousel-link">
-                <v-btn class="error" :to="'/ad/'+ad.id">{{ ad.title }}</v-btn>
+                <v-btn class="error" :to="'/ad/' + ad.id">{{ ad.title }}</v-btn>
               </div>
             </v-carousel-item>
           </v-carousel>
@@ -22,10 +22,14 @@
 
     <v-container grid-list-lg>
       <v-layout row wrap>
-        <v-flex xs12 md6 lg3 v-for="(ad,i) in ads" :key="i">
+        <v-flex xs12 md6 lg3 v-for="(ad, i) in ads" :key="i">
           <v-card class="mx-auto" max-width="400">
-            <v-img class="white--text align-end" height="200px" :src="ad.imageSrc">
-              <v-card-title>{{ ad.title}}</v-card-title>
+            <v-img
+              class="white--text align-end"
+              height="200px"
+              :src="ad.imageSrc"
+            >
+              <v-card-title>{{ ad.title }}</v-card-title>
             </v-img>
 
             <v-card-text class="text--primary">
@@ -34,11 +38,24 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn text :to="'/ad/'+ad.id">Open</v-btn>
+              <v-btn text :to="'/ad/' + ad.id">Open</v-btn>
               <v-btn raised class="primary">Buy</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
+  <div v-else class="pt-12">
+    <v-container fluid >
+      <v-layout row >
+        <v-row xs12 align="center" justify="center">
+          <v-progress-circular
+            :size="100"
+            color="purple"
+            indeterminate
+          ></v-progress-circular>
+        </v-row>
       </v-layout>
     </v-container>
   </div>
@@ -55,6 +72,9 @@ export default {
     },
     ads() {
       return this.$store.getters.ads;
+    },
+    loading() {
+      return this.$store.getters.loading;
     }
   }
 };

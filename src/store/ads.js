@@ -1,3 +1,4 @@
+/*eslint-disable */
 class Ad {
   constructor(
     title,
@@ -18,40 +19,14 @@ class Ad {
 
 export default {
   state: {
-    ads: [
-      {
-        id: "1",
-        title: "One",
-        description: "desc1",
-        promo: false,
-        imageSrc: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
-      },
-      {
-        id: "2",
-        title: "Two",
-        description: "desc2",
-        promo: true,
-        imageSrc: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-      },
-      {
-        id: "3",
-        title: "Three",
-        description: "desc3",
-        promo: true,
-        imageSrc: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-      },
-      {
-        id: "4",
-        title: "Four",
-        description: "desc4",
-        promo: true,
-        imageSrc: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
-      }
-    ]
+    ads: []
   },
   mutations: {
     createAd(state, payload) {
       state.ads.push(payload);
+    },
+    loadAds(state, payload) {
+      state.ads = payload;
     }
   },
   actions: {
@@ -69,16 +44,48 @@ export default {
         );
         console.log(newAd);
 
-
-        /*eslint-disable */
         const ad = await firebase
           .database()
           .ref("ads")
           .push(newAd);
-          
+
         commit("setLoading", false);
         commit("createAd", { ...newAd, id: ad.key });
-        /*eslint-enable */
+      } catch (error) {
+        commit("setError", error.message);
+        commit("setLoading", false);
+        throw error;
+      }
+    },
+    async fetchAds({ commit }) {
+      commit("clearError");
+      commit("setLoading", true);
+
+      const resultAds = [];
+
+      try {
+        const fbVal = await firebase
+          .database()
+          .ref("ads")
+          .once("value");
+        const ads = fbVal.val();
+
+        Object.keys(ads).forEach(key => {
+          const ad = ads[key];
+
+          resultAds.push(
+            new Ad(
+              ad.title,
+              ad.description,
+              ad.ownerId,
+              ad.imageSrc,
+              ad.promo,
+              key
+            )
+          );
+        });
+        commit("loadAds", resultAds);
+        commit("setLoading", false);
       } catch (error) {
         commit("setError", error.message);
         commit("setLoading", false);
@@ -105,3 +112,4 @@ export default {
     }
   }
 };
+/*eslint-enable */
