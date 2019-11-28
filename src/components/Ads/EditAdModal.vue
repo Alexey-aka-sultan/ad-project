@@ -57,8 +57,6 @@ export default {
   },
   methods: {
     onCancel() {
-        console.log(this.ad);
-        
       this.editedDescription = this.ad.description;
       this.editedTitle = this.ad.title;
       this.modal = false;
