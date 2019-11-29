@@ -12,7 +12,7 @@
             <v-spacer></v-spacer>
             <!-- <v-btn class="warning" text>Edit</v-btn> -->
             <edit-ad-modal v-if="isOwner" :ad="ad"></edit-ad-modal>
-            <v-btn color="success">Buy</v-btn>
+            <app-buy-modal :ad="ad"></app-buy-modal>
           </v-card-actions>
         </v-card>
         <div v-else>

@@ -3,10 +3,13 @@ import App from "./App.vue";
 import router from "./routes/index.js";
 import store from "./store/index.js";
 import vuetify from "./plugins/vuetify";
+import BuyModalComponent from "./components/Shared/BuyModal";
 
 const firebase = window.firebase;
 
 Vue.config.productionTip = false;
+
+Vue.component("app-buy-modal", BuyModalComponent);
 
 /* eslint-disable no-new */
 new Vue({
